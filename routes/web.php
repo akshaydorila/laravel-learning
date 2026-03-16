@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
 
 # without param
 // Route::get('/greeting', function () {
@@ -38,3 +37,7 @@ Route::fallback(function () {
 Route::get('test', [TestController::class, 'test']);
 // Route::get('test-view', [TestController::class, 'testView']);
 Route::get('test-view/{name}/{subject?}', [TestController::class, 'testView']);
+
+Route::get('page-1', [TemplateController::class, 'page1']);
+Route::get('page-2', [TemplateController::class, 'page2']);
+Route::get('page-3', [TemplateController::class, 'page3']);

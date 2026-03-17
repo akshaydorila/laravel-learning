@@ -3,7 +3,7 @@
     Page 2
 @endsection
 @section('content')
-    <h1>Welcome to Page 2</h1>
+    <h1 class="text-secondary">Welcome to Page 2</h1>
     <p>This is the main content for Page 2.</p>
 @endsection
 @section('page-no')

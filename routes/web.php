@@ -41,3 +41,7 @@ Route::get('test-view/{name}/{subject?}', [TestController::class, 'testView']);
 Route::get('page-1', [TemplateController::class, 'page1']);
 Route::get('page-2', [TemplateController::class, 'page2']);
 Route::get('page-3', [TemplateController::class, 'page3']);
+
+// Form demo
+Route::get('form', [TestController::class, 'form']);
+Route::post('submit-form', [TestController::class, 'submitForm']);

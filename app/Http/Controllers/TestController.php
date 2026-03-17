@@ -48,4 +48,15 @@ class TestController extends Controller
 
         return $users;
     }
+
+    public function form()
+    {
+        return view('pages.form');
+    }
+
+    public function submitForm(Request $request)
+    {
+        return $request->all();
+        // return "Email: " . $request->email . ", Password: " . $request->password;
+    }
 }

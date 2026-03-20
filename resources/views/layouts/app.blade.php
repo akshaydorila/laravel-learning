@@ -14,19 +14,19 @@
 
     <main>
         @yield('content')
-        <div>
+        <!-- <div>
             Title: {{ $title ?? 'Default Title' }} <br>
             Description: {{ $description ?? 'N/A' }}
-        </div>
+        </div> -->
     </main>
 
-    @sectionMissing('showFooter')
+    <!-- @sectionMissing('showFooter')
     <h1>Footer Is missing</h1>
     @endif
 
     @hasSection('showFooter')
     @include('layouts.footer')
-    @endif
+    @endif -->
 
     <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>

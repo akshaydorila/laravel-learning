@@ -1,0 +1,2 @@
+Create details page for show form data (you can use form page also)
+Value should not remove form input field after submit form

@@ -56,12 +56,19 @@ class TestController extends Controller
 
     public function submitForm(Request $request)
     {
-        $request->validate([
+        $rules = [
             'email' => 'required|email',
-            'password' => 'required|min:6|max:12',
-        ]);
+            'password' => 'required',
+        ];
 
-        return $request->all();
+        $customMessages = [
+            'email.required' => 'The :attribute field is required Any how.',
+            'email.email' => 'Invalid :attribute.',
+        ];
+
+        $validatedData = $request->validate($rules, $customMessages);
+
+        // return $validatedData;
         // return "Email: " . $request->email . ", Password: " . $request->password;
     }
 }

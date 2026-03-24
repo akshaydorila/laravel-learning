@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\File;
 
 class TestController extends Controller
 {
@@ -59,6 +60,12 @@ class TestController extends Controller
         $rules = [
             'email' => 'required|email',
             'password' => 'required',
+            'profile' => [
+                'required',
+                'max:10240', // 10MB
+                File::types(['mp3', 'wav', 'mp4', 'png', 'jpg', 'jpeg'])
+                    // ->max('1000') // 10MB
+            ]
         ];
 
         $customMessages = [

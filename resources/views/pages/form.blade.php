@@ -16,19 +16,26 @@
     </div>
     @endif -->
 
-    <form action="{{ url('submit-form') }}" method="POST">
+    <form action="{{ url('submit-form') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="text" @class(["form-control", "is-invalid"=> $errors->has('email')]) id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+            <label for="email">Email address</label>
+            <input type="text" @class(["form-control", "is-invalid"=> $errors->has('email')]) id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email">
             @error('email')
             <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" @class(["form-control", "is-invalid"=> $errors->has('password')]) id="exampleInputPassword1" placeholder="Password" name="password">
+            <label for="password">Password</label>
+            <input type="password" @class(["form-control", "is-invalid"=> $errors->has('password')]) id="password" placeholder="Password" name="password">
             @error('password')
+            <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="profile">Profile</label>
+            <input type="file" @class(["form-control", "is-invalid"=> $errors->has('profile')]) id="profile" placeholder="Profile" name="profile">
+            @error('profile')
             <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>

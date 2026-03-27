@@ -45,3 +45,6 @@ Route::get('page-3', [TemplateController::class, 'page3']);
 // Form demo
 Route::get('form', [TestController::class, 'form']);
 Route::post('submit-form', [TestController::class, 'submitForm']);
+
+// Send Mail
+Route::get('send-mail', [TestController::class, 'sendMail']);

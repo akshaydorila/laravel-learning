@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\File;
 
 class TestController extends Controller
@@ -61,10 +63,10 @@ class TestController extends Controller
             'email' => 'required|email',
             'password' => 'required',
             'profile' => [
-                'required',
+                'nullable',
                 'max:10240', // 10MB
                 File::types(['mp3', 'wav', 'mp4', 'png', 'jpg', 'jpeg'])
-                    // ->max('1000') // 10MB
+                // ->max('1000') // 10MB
             ]
         ];
 
@@ -73,9 +75,22 @@ class TestController extends Controller
             'email.email' => 'Invalid :attribute.',
         ];
 
-        $validatedData = $request->validate($rules, $customMessages);
+        $data = $request->validate($rules, $customMessages);
 
+        return view('pages.form', compact('data'));
         // return $validatedData;
         // return "Email: " . $request->email . ", Password: " . $request->password;
+    }
+
+    public function sendMail()
+    {
+        $details = [
+            'title' => 'Mail from Laravel App',
+            'body' => 'This is a test mail sent from Laravel application.'
+        ];
+
+        Mail::to('jay@example.com')->send(new TestMail($details));
+
+        return redirect()->back()->with('success', 'Email sent successfully!');
     }
 }

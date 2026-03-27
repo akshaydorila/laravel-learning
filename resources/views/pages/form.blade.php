@@ -41,5 +41,13 @@
         </div>
         <button type="submit" class="btn btn-primary mt-2">Submit</button>
     </form>
+
+    @if (isset($data))
+        <div>
+            <h1>Form Data</h1>
+            <p>Email: {{ $data['email'] }}</p>
+            <p>Password: {{ $data['password'] }}</p>
+        </div>
+    @endif
 </div>
 @endsection

@@ -47,11 +47,11 @@ class TestMail extends Mailable
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
-    public function attachments(): array
-    {
-        // return [
-        //     Attachment::fromData(fn() => $this->pdf, 'Report.pdf')
-        //         ->withMime('application/pdf'),
-        // ];
-    }
+    // public function attachments(): array
+    // {
+    //     return [
+    //         Attachment::fromData(fn() => $this->pdf, 'Report.pdf')
+    //             ->withMime('application/pdf'),
+    //     ];
+    // }
 }

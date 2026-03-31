@@ -48,3 +48,8 @@ Route::post('submit-form', [TestController::class, 'submitForm']);
 
 // Send Mail
 Route::get('send-mail', [TestController::class, 'sendMail']);
+
+// Session routes
+Route::get('set-session', [TestController::class, 'setSession']);
+Route::get('get-session', [TestController::class, 'getSession']);
+Route::get('delete-session', [TestController::class, 'deleteSession']);

@@ -82,7 +82,7 @@ class TestController extends Controller
         // return "Email: " . $request->email . ", Password: " . $request->password;
     }
 
-    public function sendMail()
+    public function sendMail(Request $request)
     {
         $details = [
             'title' => 'Mail from Laravel App',
@@ -90,7 +90,39 @@ class TestController extends Controller
         ];
 
         Mail::to('jay@example.com')->send(new TestMail($details));
+        // $request->session()->flash('success', 'Task was successful!');
 
-        return redirect()->back()->with('success', 'Email sent successfully!');
+        return redirect()->back(); //->with('success', 'Email sent successfully!');
+    }
+
+    public function setSession(Request $request)
+    {
+        // Example session data for learning session
+        $request->session()->put('learn_session', [
+            'topic' => 'Laravel Sessions',
+            'started_at' => now()->toDateTimeString(),
+            'progress' => 0,
+        ]);
+
+        return response()->json(['message' => 'Learn session set', 'data' => $request->session()->get('learn_session')]);
+    }
+
+    public function getSession(Request $request)
+    {
+        // dump($request->session()->get('learn_session', 'Default value request instance method'));
+        // dump(session('learn_session', 'Default value helper function'));
+
+        if (!$request->session()->has('learn_session')) {
+            return response()->json(['message' => 'No learn session found'], 404);
+        }
+
+        return response()->json(['message' => 'Learn session retrieved', 'data' => $request->session()->get('learn_session')]);
+    }
+
+    public function deleteSession(Request $request)
+    {
+        $request->session()->forget('learn_session');
+
+        return response()->json(['message' => 'Learn session deleted']);
     }
 }

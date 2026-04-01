@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\TestMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -11,7 +12,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        # Add your global middleware here. These middleware will run during every request to your application.
+        // $middleware->append(TestMiddleware::class);
+
+        # You can also assign an alias to your middleware, which can be used in route definitions.
+        $middleware->alias([
+            'test' => TestMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -5,6 +5,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Middleware\TestMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 Route::view('/', 'welcome');
 
@@ -54,3 +55,6 @@ Route::get('send-mail', [TestController::class, 'sendMail']);
 Route::get('set-session', [TestController::class, 'setSession']);
 Route::get('get-session', [TestController::class, 'getSession']);
 Route::get('delete-session', [TestController::class, 'deleteSession']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -13,10 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table("users")->get();
+        // $users = DB::table("users")->get();
         // $users = DB::table("users")->pluck('email', 'name');
+        $users = User::all();
 
-        return $users;
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -29,7 +31,8 @@ class UserController extends Controller
             "email" => "test@user1.com",
             "password" => Hash::make("password"),
         ];
-        $user = DB::table("users")->insert($data);
+        // $user = DB::table("users")->insert($data);
+        $user = User::create($data);
 
         return $user;
     }
@@ -48,7 +51,8 @@ class UserController extends Controller
     public function show(string $id)
     {
         // Fetch user using id
-        $user = DB::table("users")->find($id);
+        // $user = DB::table("users")->find($id);
+        $user = User::find($id);
         return $user;
 
         // Delete user with ids
@@ -65,7 +69,8 @@ class UserController extends Controller
             "name" => "Test User update",
             "email" => "test@update1.com",
         ];
-        $user = DB::table("users")->where('id', $id)->update($data);
+        // $user = DB::table("users")->where('id', $id)->update($data);
+        $user = User::find($id)->update($data);
 
         return $user;
     }
@@ -83,6 +88,9 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // $user = DB::table("users")->where('id', $id)->delete();
+        $user = User::find($id)->delete();
+
+        return $user;
     }
 }

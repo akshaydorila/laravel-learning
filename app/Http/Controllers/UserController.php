@@ -26,15 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data = [
-            "name" => "Test User",
-            "email" => "test@user1.com",
-            "password" => Hash::make("password"),
-        ];
-        // $user = DB::table("users")->insert($data);
-        $user = User::create($data);
-
-        return $user;
+        return view('users.create');
     }
 
     /**
@@ -42,7 +34,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

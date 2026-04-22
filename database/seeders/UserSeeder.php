@@ -16,11 +16,11 @@ class UserSeeder extends Seeder
     {
         $users = [];
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             $users[] = [
                 'name' => 'User ' . $i,
                 'email' => 'user' . $i . '@example.com',
-                'password' => Hash::make('password'),
+                'password' => Hash::make(123),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

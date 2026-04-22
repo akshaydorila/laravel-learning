@@ -2,43 +2,52 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
-    <title>App | @yield('title')</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+        integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
-    @include('layouts.header')
+    <!--Main Navigation-->
+    <header>
+        <!-- Sidebar -->
+        @include('layouts.sidebar')
+        <!-- Sidebar -->
 
-    <main>
-        @if (session('success'))
-            <div class="container mt-1">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Success!</strong> {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            </div>
-        @endif
-        @yield('content')
-        <!-- <div>
-            Title: {{ $title ?? 'Default Title' }} <br>
-            Description: {{ $description ?? 'N/A' }}
-        </div> -->
+        <!-- Navbar -->
+        @include('layouts.header')
+        <!-- Navbar -->
+    </header>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main style="margin-top: 58px">
+        <div class="container pt-4">
+            <!-- Section: Main chart -->
+            <section class="mb-4">
+                @yield('content')
+            </section>
+            <!-- Section: Main chart -->
+        </div>
     </main>
+    <!--Main layout-->
+    <!-- MDB -->
+    <script type="text/javascript" src="{{ asset('assets/js/mdb.umd.min.js') }}"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="{{ asset('assets/js/admin.js') }}"></script>
 
-    <!-- @sectionMissing('showFooter')
-    <h1>Footer Is missing</h1>
-    @endif
-
-    @hasSection('showFooter')
-    @include('layouts.footer')
-    @endif -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-    <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 
 </html>

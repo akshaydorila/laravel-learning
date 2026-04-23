@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         // $users = DB::table("users")->get();
         // $users = DB::table("users")->pluck('email', 'name');
-        $users = User::all();
+        $users = User::orderByDesc('id')->get();
 
         return view('users.index', compact('users'));
     }
@@ -34,7 +34,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required',
+        ]);
 
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
     /**

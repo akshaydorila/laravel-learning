@@ -69,14 +69,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $data = [
-            "name" => "Test User update",
-            "email" => "test@update1.com",
-        ];
-        // $user = DB::table("users")->where('id', $id)->update($data);
-        $user = User::find($id)->update($data);
+        $user = User::find($id);
 
-        return $user;
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -84,7 +79,14 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+        ]);
+
+        User::find($id)->update($data);
+
+        return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 
     /**
@@ -95,6 +97,6 @@ class UserController extends Controller
         // $user = DB::table("users")->where('id', $id)->delete();
         $user = User::find($id)->delete();
 
-        return $user;
+        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
 }

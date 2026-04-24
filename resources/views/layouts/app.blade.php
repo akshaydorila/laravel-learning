@@ -17,20 +17,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
         integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
         crossorigin="anonymous"></script>
+    @stack('styles')
 </head>
 
 <body>
-    <!--Main Navigation-->
-    <header>
-        <!-- Sidebar -->
-        @include('layouts.sidebar')
-        <!-- Sidebar -->
+    @auth
+        <!--Main Navigation-->
+        <header>
+            <!-- Sidebar -->
+            @include('layouts.sidebar')
+            <!-- Sidebar -->
 
-        <!-- Navbar -->
-        @include('layouts.header')
-        <!-- Navbar -->
-    </header>
-    <!--Main Navigation-->
+            <!-- Navbar -->
+            @include('layouts.header')
+            <!-- Navbar -->
+        </header>
+        <!--Main Navigation-->
+    @endauth
 
     <!--Main layout-->
     <main style="margin-top: 58px">

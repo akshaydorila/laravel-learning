@@ -7,7 +7,7 @@ use App\Http\Middleware\TestMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-Route::view('/', 'welcome');
+Route::view('/', 'auth');
 
 # without param
 // Route::get('/greeting', function () {

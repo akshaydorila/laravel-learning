@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="alert alert-dismissible fade show alert-success" role="alert" data-mdb-color="success"
                     data-mdb-alert-init="" id="customxD" data-mdb-alert-initialized="true">
-                    <strong>Congrats!</strong> User created successfully.
+                    <strong>Congrats!</strong> {{ session('success') }}
                     <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
@@ -20,6 +20,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Created At</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,14 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at }}</td>
+                    <td>
+                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure want to delete {{ $user->name }}?')">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

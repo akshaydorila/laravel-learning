@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
@@ -7,7 +9,7 @@ use App\Http\Middleware\TestMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-Route::view('/', 'auth');
+Route::view('/', 'auth')->middleware('guest');
 
 # without param
 // Route::get('/greeting', function () {
@@ -56,5 +58,13 @@ Route::get('set-session', [TestController::class, 'setSession']);
 Route::get('get-session', [TestController::class, 'getSession']);
 Route::get('delete-session', [TestController::class, 'deleteSession']);
 
+# Admin panel routes
 // Query Builder
-Route::resource('users', UserController::class);
+Route::post('user-login', [AuthController::class, 'login'])->name('user-login');
+Route::redirect('login', '/');
+
+Route::middleware('auth')->group(function () {
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::resource('users', UserController::class);
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});

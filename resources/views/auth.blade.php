@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container w-50">
         <!-- Pills navs -->
         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
             <li class="nav-item" role="presentation">
@@ -18,7 +18,8 @@
         <!-- Pills content -->
         <div class="tab-content">
             <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                <form>
+                <form method="POST" action="{{ route('user-login') }}">
+                    @csrf
                     <div class="text-center mb-3">
                         <p>Sign in with:</p>
                         <button data-mdb-ripple-init type="button" class="btn btn-secondary btn-floating mx-1">
@@ -42,14 +43,20 @@
 
                     <!-- Email input -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <input type="email" id="loginName" class="form-control" />
+                        <input type="email" id="loginName" class="form-control" name="email" />
                         <label class="form-label" for="loginName">Email or username</label>
+                        @error('email')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Password input -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <input type="password" id="loginPassword" class="form-control" />
+                        <input type="password" id="loginPassword" class="form-control" name="password" />
                         <label class="form-label" for="loginPassword">Password</label>
+                        @error('password')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- 2 column grid layout -->

@@ -9,8 +9,6 @@ use App\Http\Middleware\TestMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-Route::view('/', 'auth')->middleware('guest');
-
 # without param
 // Route::get('/greeting', function () {
 //     return "Hello World";
@@ -60,8 +58,13 @@ Route::get('delete-session', [TestController::class, 'deleteSession']);
 
 # Admin panel routes
 // Query Builder
-Route::post('user-login', [AuthController::class, 'login'])->name('user-login');
-Route::redirect('login', '/');
+Route::middleware('guest')->group(function () {
+    Route::view('/', 'welcome');
+    Route::post('login', [AuthController::class, 'loginUser'])->name('login');
+    Route::post('register', [AuthController::class, 'registerUser'])->name('register');
+    Route::get('login', [AuthController::class, 'login']);
+    Route::get('register', [AuthController::class, 'register']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');

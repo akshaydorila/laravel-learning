@@ -21,9 +21,9 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         // This directs unauthenticated users to the root path
-        $middleware->redirectGuestsTo('/');
+        // $middleware->redirectGuestsTo('/');
 
-        // Optionally, if you want to change where users go AFTER they log in:
+        // If you want to change where users go AFTER they log in:
         // $middleware->redirectUsersTo('/dashboard');
     })
     ->withExceptions(function (Exceptions $exceptions): void {

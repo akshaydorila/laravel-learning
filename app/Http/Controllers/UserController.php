@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -95,8 +96,29 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         // $user = DB::table("users")->where('id', $id)->delete();
-        $user = User::find($id)->delete();
+        User::find($id)->delete();
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+    }
+
+     public function getProfile()
+    {
+        $user = Auth::user();
+
+        return view('users.profile', compact('user'));
+    }
+
+     public function updateProfile(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . Auth::id(),
+        ]);
+
+
+        Auth::user()->update($data);
+        // dd($data);
+
+        return redirect()->route('user.profile')->with('success', 'Profile updated successfully.');
     }
 }

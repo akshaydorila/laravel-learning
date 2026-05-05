@@ -5,7 +5,7 @@
         <section class="d-flex justify-content-center my-4 w-100">
             <div class="container">
                 <div class="alert alert-dismissible fade show alert-success" role="alert" data-mdb-color="success"
-                    data-mdb-alert-init="" id="customxD" data-mdb-alert-initialized="true">
+                    data-mdb-alert-init="" id="successAlert" data-mdb-alert-initialized="true">
                     <strong>Congrats!</strong> {{ session('success') }}
                     <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
                 </div>

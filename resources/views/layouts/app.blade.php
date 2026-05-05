@@ -46,11 +46,25 @@
         </div>
     </main>
     <!--Main layout-->
+
+    {{-- @stack('scripts') --}}
+    {{-- jQuery --}}
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+        crossorigin="anonymous"></script>
     <!-- MDB -->
     <script type="text/javascript" src="{{ asset('assets/js/mdb.umd.min.js') }}"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="{{ asset('assets/js/admin.js') }}"></script>
 
+    <script>
+        if ($('#successAlert').length) {
+            setTimeout(function() {
+                $('#successAlert').fadeOut('slow', function() {
+                    $(this).remove();
+                });
+            }, 3000);
+        }
+    </script>
 </body>
 
 </html>

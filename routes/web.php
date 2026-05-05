@@ -70,4 +70,6 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('users', UserController::class);
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('profile', [UserController::class, 'getProfile'])->name('user.profile');
+    Route::post('update-profile', [UserController::class, 'updateProfile'])->name('profile.update');
 });

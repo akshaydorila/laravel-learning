@@ -100,7 +100,7 @@
                         height="22" alt="" loading="lazy" />
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">My profile</a></li>
+                    <li><a class="dropdown-item" href="{{ route('user.profile') }}">My profile</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     {{-- <li><a class="dropdown-item" href="#">Logout</a></li> --}}
                     <li>

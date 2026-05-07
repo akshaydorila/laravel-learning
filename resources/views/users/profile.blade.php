@@ -12,7 +12,7 @@
             </div>
         </section>
     @endsession
-    <form action="{{ route('profile.update') }}" method="POST">
+    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row mb-4">
@@ -35,6 +35,11 @@
         @error('email')
             <div class="text-danger">{{ $message }}</div>
         @enderror
+
+        <label for="profile">Profile Picture</label>
+         <div data-mdb-input-init class="form-outline mb-4">
+            <input type="file" id="profile" class="form-control" name="profile" />
+        </div>
 
         <!-- Submit button -->
         <button data-mdb-ripple-init type="submit" class="btn btn-primary mb-4">Update Profile</button>

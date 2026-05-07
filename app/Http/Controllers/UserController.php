@@ -17,7 +17,22 @@ class UserController extends Controller
     {
         // $users = DB::table("users")->get();
         // $users = DB::table("users")->pluck('email', 'name');
-        $users = User::orderByDesc('id')->get();
+        $search = request('search');
+        if ($search) {
+            // for postgresql
+            // $users = User::where('name', 'ILIKE', "%$search%")
+            //     ->orWhere('email', 'ILIKE', "%$search%")
+            //     ->orderByDesc('id')
+            //     ->get();
+
+            // for mysql
+            $users = User::whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($search) . '%'])
+                ->orWhereRaw('LOWER(email) LIKE ?', ['%' . strtolower($search) . '%'])
+                ->orderByDesc('id')
+                ->paginate(10);
+        } else {
+            $users = User::orderByDesc('id')->paginate(10);
+        }
 
         return view('users.index', compact('users'));
     }
@@ -101,14 +116,14 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
 
-     public function getProfile()
+    public function getProfile()
     {
         $user = Auth::user();
 
         return view('users.profile', compact('user'));
     }
 
-     public function updateProfile(Request $request)
+    public function updateProfile(Request $request)
     {
         $data = $request->validate([
             'name' => 'required',
@@ -116,8 +131,14 @@ class UserController extends Controller
         ]);
 
 
+        $image = $request->file('profile');
+        if (isset($image)) {
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $data['profile'] = 'profile/' .$imageName;
+            $image->move(public_path('profile'), $imageName);
+        }
+
         Auth::user()->update($data);
-        // dd($data);
 
         return redirect()->route('user.profile')->with('success', 'Profile updated successfully.');
     }

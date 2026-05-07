@@ -12,6 +12,17 @@
             </div>
         </section>
     @endsession
+    <div class="input-group w-25 float-end">
+        <form action="{{ route('users.index') }}" method="GET" class="d-flex">
+            <div class="form-outline" data-mdb-input-init>
+                <input type="search" id="form1" class="form-control" name="search" value="{{ request('search') }}" />
+                <label class="form-label" for="form1">Search</label>
+            </div>
+            <button type="submit" class="btn btn-primary ms-1" data-mdb-ripple-init>
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </div>
     <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Add User</a>
     <table class="table table-striped">
         <thead>
@@ -35,11 +46,13 @@
                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure want to delete {{ $user->name }}?')">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-outline-danger"
+                                onclick="return confirm('Are you sure want to delete {{ $user->name }}?')">Delete</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    {{ $users->links() }}
 @endsection

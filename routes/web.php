@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\TestController;
@@ -31,6 +32,10 @@ use Illuminate\Http\Request;
 // });
 
 # if route not exists, then fallback route will call
+// Category CRUD Routes
+Route::resource('categories', CategoryController::class);
+Route::get('api/categories', [CategoryController::class, 'getCategories']);
+
 Route::fallback(function () {
     return 'Page Not Found';
 });

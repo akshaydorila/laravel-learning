@@ -8,6 +8,8 @@
             </a>
             <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init @class(['active' => request()->is('users.*')])>
                 <i class="fas fa-users fa-fw me-3"></i><span>Users</span></a>
+            <a href="{{ route('categories.index') }}" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init @class(['active' => request()->is('categories.*')])>
+                <i class="fas fa-list fa-fw me-3"></i><span>Categories</span></a>
             {{-- <a href="#" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                 <i class="fas fa-chart-area fa-fw me-3"></i><span>Website traffic </span>
             </a>

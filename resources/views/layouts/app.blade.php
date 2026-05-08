@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Laravel Learning</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" />
@@ -47,10 +48,10 @@
     </main>
     <!--Main layout-->
 
-    {{-- @stack('scripts') --}}
     {{-- jQuery --}}
     <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
-        crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
+    @stack('scripts')
     <!-- MDB -->
     <script type="text/javascript" src="{{ asset('assets/js/mdb.umd.min.js') }}"></script>
     <!-- Custom scripts -->

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ArticleCommentController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TemplateController;
@@ -35,6 +37,14 @@ use Illuminate\Http\Request;
 // Category CRUD Routes
 Route::resource('categories', CategoryController::class);
 Route::get('api/categories', [CategoryController::class, 'getCategories']);
+
+// Article CRUD Routes
+Route::resource('articles', ArticleController::class);
+Route::get('api/articles', [ArticleController::class, 'getArticles']);
+Route::get('api/articles/{id}/comments', [ArticleCommentController::class, 'getComments']);
+Route::post('api/articles/{id}/comments', [ArticleCommentController::class, 'store']);
+Route::put('api/comments/{id}', [ArticleCommentController::class, 'update']);
+Route::delete('api/comments/{id}', [ArticleCommentController::class, 'destroy']);
 
 Route::fallback(function () {
     return 'Page Not Found';
